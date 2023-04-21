@@ -1,10 +1,10 @@
 // Export defs
 export const pleatDefs = [
   {
-    name: 'notch',
-    def: `
-<marker id="pleatTo" markerWidth="12" markerHeight="8" orient="auto" refY="4" refX="12">
-  <path class="note fill-note" d="M 12,4 L 0,0 C 2,2 2,6  0,8 z" />
+    name: 'pleatTo',
+    def: (scale) => `
+<marker id="pleatTo" markerWidth="12" markerHeight="8" orient="auto" refY="0" refX="0">
+  <path class="note fill-note" d="M 0,0 L -12,-4 C -10,-2 -10,2  -12,4 z" transform="scale(${scale})"/>
 </marker>
 `,
   },
