@@ -23,6 +23,13 @@ export const scaleboxMacros = {
       for (let id of ['__scaleboxMetric', '__scaleboxImperial']) delete paths[id]
       return true
     }
+    console.log({ at: so.at })
+
+    const transform = function (anchor) {
+      const cx = -1 * (scale * anchor.x - anchor.x)
+      const cy = -1 * (scale * anchor.y - anchor.y)
+      return `translate(${cx},${cy}) scale(${scale})`
+    }
 
     // Convert scale to a value between 0 and 9, inclusive.
     const scaleIndex = Math.round(10 * Math.max(0.1, Math.min(1, scale))) - 1
@@ -99,7 +106,10 @@ export const scaleboxMacros = {
       so.at.y + imperialHeight / 2
     )
     // Text anchor points
-    points.__scaleboxLead = new Point(so.at.x - 45 * scale, so.at.y - 15 * scale)
+    // points.__scaleboxLead = new Point(so.at.x - 45 * scale, so.at.y - 15 * scale)
+    points.__scaleboxLead = points.__scaleboxImperialTopLeft
+      .shift(-90, 7 * scale)
+      .shift(0, 2 * scale)
     points.__scaleboxTitle = points.__scaleboxLead.shift(-90, 10 * scale)
     points.__scaleboxText = points.__scaleboxTitle.shift(-90, 12 * scale)
     points.__scaleboxLink = points.__scaleboxText.shift(-90, 5 * scale)
@@ -134,23 +144,24 @@ export const scaleboxMacros = {
     }
     // Paths
     paths.__scaleboxImperial = new Path()
-      .attr('class', 'scalebox imperial fill-current')
+      .attr('class', 'scalebox imperial fill-current note')
       .move(points.__scaleboxImperialTopLeft)
       .line(points.__scaleboxImperialBottomLeft)
       .line(points.__scaleboxImperialBottomRight)
       .line(points.__scaleboxImperialTopRight)
       .close()
     paths.__scaleboxMetric = new Path()
-      .attr('class', 'scalebox metric fill-bg')
+      .attr('class', 'scalebox metric fill-bg note')
       .move(points.__scaleboxMetricTopLeft)
       .line(points.__scaleboxMetricBottomLeft)
       .line(points.__scaleboxMetricBottomRight)
       .line(points.__scaleboxMetricTopRight)
       .close()
     // Lead
-    points.__scaleboxLead = points.__scaleboxLead
+    points.__scaleboxLead
       .attr('data-text', so.lead || 'FreeSewing')
       .attr('data-text-class', 'text-sm')
+      .attr('data-text-transform', transform(points.__scaleboxLead))
     // Title
     if (so.title) points.__scaleboxTitle.attributes.set('data-text', so.title)
     else {
@@ -160,6 +171,7 @@ export const scaleboxMacros = {
         .attr('data-text', name)
         .attr('data-text', 'v' + (store.data?.version || 'No Version'))
     }
+    points.__scaleboxTitle.attr('data-text-transform', transform(points.__scaleboxTitle))
     points.__scaleboxTitle.attributes.add('data-text-class', 'text-lg')
     // Text
     if (typeof so.text === 'string') {
@@ -170,7 +182,11 @@ export const scaleboxMacros = {
         .attr('data-text', 'freesewing.org/patrons/join')
         .attr('data-text-class', 'text-sm fill-note')
     }
-    points.__scaleboxText.attr('data-text-class', 'text-xs').attr('data-text-lineheight', 4)
+    points.__scaleboxLink.attr('data-text-transform', transform(points.__scaleboxLink))
+    points.__scaleboxText
+      .attr('data-text-transform', transform(points.__scaleboxText))
+      .attr('data-text-class', 'text-xs')
+      .attr('data-text-lineheight', 4)
     // Instructions
     points.__scaleboxMetric = points.__scaleboxMetric
       .attr('data-text', 'theWhiteInsideOfThisBoxShouldMeasure')
@@ -178,12 +194,14 @@ export const scaleboxMacros = {
       .attr('data-text', 'x')
       .attr('data-text', `${metricDisplayHeight}`)
       .attr('data-text-class', 'text-xs center')
+      .attr('data-text-transform', transform(points.__scaleboxMetric))
     points.__scaleboxImperial = points.__scaleboxImperial
       .attr('data-text', 'theBlackOutsideOfThisBoxShouldMeasure')
       .attr('data-text', `${imperialDisplayWidth}`)
       .attr('data-text', 'x')
       .attr('data-text', `${imperialDisplayHeight}`)
       .attr('data-text-class', 'text-xs center ')
+      .attr('data-text-transform', transform(points.__scaleboxImperial))
   },
   miniscale(so, { points, paths, scale, Point, Path }) {
     // Passing `false` will remove the miniscale
