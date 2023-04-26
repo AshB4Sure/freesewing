@@ -22,6 +22,7 @@ function drawDimension(from, to, so, { Path, units, scale }) {
   const x = from.x
   const y = from.y
   let tAttr = `translate(${x}, ${y}) scale(${scale}) translate(${x * -1}, ${y * -1})`
+  // let tAttr = `scale(${scale}) `
   const dimension = new Path()
     .move(from)
     .line(to)
@@ -32,7 +33,7 @@ function drawDimension(from, to, so, { Path, units, scale }) {
   if (!so.noStartMarker) dimension.attributes.set('marker-start', 'url(#dimensionFrom)')
   if (!so.noEndMarker) dimension.attributes.set('marker-end', 'url(#dimensionTo)')
 
-  console.log({ dimension: dimension })
+  console.log({ from: from, to: to, dimension: dimension })
   return dimension
 }
 

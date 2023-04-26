@@ -132,9 +132,10 @@ export const TextOnPath = (props) => {
   else if (align && align.indexOf('right') > -1) textPathProps.startOffset = '100%'
 
   const attr = props.path.attributes.asPropsIfPrefixIs('data-text-')
+  const transform = { transform: props.path.attributes.get('data-text-transform') }
 
   return (
-    <text>
+    <text {...transform}>
       <textPath {...textPathProps}>
         <tspan {...attr} dangerouslySetInnerHTML={{ __html: translated }} />
       </textPath>
