@@ -18,16 +18,21 @@ export const dimensionsDefs = [
 
 const prefix = '__paperless'
 
-function drawDimension(from, to, so, { Path, units }) {
+function drawDimension(from, to, so, { Path, units, scale }) {
+  const x = from.x
+  const y = from.y
+  let tAttr = `translate(${x}, ${y}) scale(${scale}) translate(${x * -1}, ${y * -1})`
   const dimension = new Path()
     .move(from)
     .line(to)
     .attr('class', 'mark')
     .attr('data-text', so.text || units(from.dist(to)))
     .attr('data-text-class', 'fill-mark center')
+    .attr('data-text-transform', tAttr)
   if (!so.noStartMarker) dimension.attributes.set('marker-start', 'url(#dimensionFrom)')
   if (!so.noEndMarker) dimension.attributes.set('marker-end', 'url(#dimensionTo)')
 
+  console.log({ dimension: dimension })
   return dimension
 }
 

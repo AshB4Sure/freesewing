@@ -26,9 +26,12 @@ export const scaleboxMacros = {
     console.log({ at: so.at })
 
     const transform = function (anchor) {
-      const cx = -1 * (scale * anchor.x - anchor.x)
-      const cy = -1 * (scale * anchor.y - anchor.y)
-      return `translate(${cx},${cy}) scale(${scale})`
+      // const cx = -1 * (scale * anchor.x - anchor.x)
+      // const cy = -1 * (scale * anchor.y - anchor.y)
+      // return `translate(${cx},${cy}) scale(${scale})`
+      return `translate(${anchor.x}, ${anchor.y}) scale(${scale}) translate(${anchor.x * -1}, ${
+        anchor.y * -1
+      })`
     }
 
     // Convert scale to a value between 0 and 9, inclusive.

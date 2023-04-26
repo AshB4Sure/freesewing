@@ -268,7 +268,9 @@ Svg.prototype.__renderPathText = function (path) {
   let align = path.attributes.get('data-text-class')
   if (align && align.indexOf('center') > -1) offset = ' startOffset="50%" '
   else if (align && align.indexOf('right') > -1) offset = ' startOffset="100%" '
-  let svg = this.__nl() + '<text>'
+  let textTransform = path.attributes.get('data-text-transform')
+
+  let svg = this.__nl() + `<text` + (textTransform ? ` transform="${textTransform}"` : '') + '>'
   this.__indent()
   svg += `<textPath xlink:href="#${path.attributes.get(
     'id'
@@ -276,6 +278,7 @@ Svg.prototype.__renderPathText = function (path) {
   this.__outdent()
   svg += this.__nl() + '</text>'
 
+  console.log({ __renderPathText: svg })
   return svg
 }
 

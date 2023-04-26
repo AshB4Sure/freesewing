@@ -3,12 +3,22 @@ export const pleatDefs = [
   {
     name: 'pleatTo',
     def: (scale) => `
-<marker id="pleatTo" markerWidth="12" markerHeight="8" orient="auto" refY="0" refX="0">
-  <path class="note fill-note" d="M 0,0 L -12,-4 C -10,-2 -10,2  -12,4 z" transform="scale(${scale})"/>
+<marker orient="auto" refY="0" refX="0" id="pleatTo" style="overflow:visible;" markerWidth="12" markerHeight="8">
+  <path class="note fill-note" d="M 0,0 L -12,-4 C -10,-2 -12,2  -12,4 z" transform="scale(${scale})"/>
 </marker>
 `,
   },
 ]
+// export const pleatDefs = [
+//   {
+//     name: 'pleatTo',
+//     def: (scale) => `
+// <marker id="pleatTo" markerWidth="12" markerHeight="8" orient="auto" refY="0" refX="0">
+//   <path class="note fill-note" d="M 0,0 L -12,-4 C -10,-2 -10,2  -12,4 z" transform="scale(${scale})"/>
+// </marker>
+// `,
+//   },
+// ]
 
 // Export macros
 export const pleatMacros = {
@@ -63,6 +73,8 @@ export const pleatMacros = {
         )
         .attr('class', 'note')
         .attr('marker-end', 'url(#pleatTo)')
+
+      console.log({ pleatArrow: paths[so.prefix + 'PleatArrow'] })
     }
   },
 }

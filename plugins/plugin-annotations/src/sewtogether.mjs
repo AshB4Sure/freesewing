@@ -3,22 +3,22 @@ export const sewtogetherDefs = [
   {
     name: 'sewTogetherStart',
     def: (scale) => `
-<marker id="sewTogetherStart" markerWidth="4" markerHeight="4" orient="auto" refX="0" refY="0">
-  <path class="note stroke-sm" d="M4,2 L0,0 4,-2" transform="scale(${scale})"/>
+<marker id="sewTogetherStart" markerWidth="8" markerHeight="8" style="overflow:visible;" orient="auto" refX="0" refY="0">
+  <path class="note stroke-sm" d="M 8,4 L 0,0 8,-4" transform="scale(${scale})"/>
 </marker>`,
   },
   {
     name: 'sewTogetherEnd',
     def: (scale) => `
-<marker id="sewTogetherEnd" markerWidth="4" markerHeight="4" orient="auto" refX="0" refY="0">
-  <path class="note stroke-sm" d="M-4,-2 L0,0 -4,2" transform="scale(${scale})"/>
+<marker id="sewTogetherEnd" markerWidth="8" markerHeight="8" style="overflow:visible;" orient="auto" refX="0" refY="0">
+  <path class="note stroke-sm" d="M -8,-4 L 0,0 -8,4" transform="scale(${scale})"/>
 </marker>`,
   },
   {
     name: 'sewTogetherCross',
     def: (scale) => `
-<marker id="sewTogetherCross" markerWidth="4" markerHeight="4" orient="auto" refX="0" refY="0">
-  <path d="M -2,-2 L 2,2 M 2,-2 L -2,2" class="note stroke-sm" transform="scale(${scale})"/>
+<marker id="sewTogetherCross" markerWidth="8" markerHeight="8" style="overflow:visible;" orient="auto" refX="0" refY="0">
+  <path d="M -4,-4 L 4,4 M 4,-4 L -4,4" class="note stroke-sm" transform="scale(${scale})"/>
 </marker>`,
   },
 ]
