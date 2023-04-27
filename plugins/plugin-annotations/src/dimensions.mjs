@@ -18,14 +18,13 @@ export const dimensionsDefs = [
 
 const prefix = '__paperless'
 
-function drawDimension(from, to, so, { Path, units, scale }) {
+function drawDimension(from, to, so, { Path, units }) {
   const dimension = new Path()
     .move(from)
     .line(to)
     .attr('class', 'mark')
     .attr('data-text', so.text || units(from.dist(to)))
     .attr('data-text-class', 'fill-mark center')
-  // .attr('data-text-fontSize', scale)
   if (!so.noStartMarker) dimension.attributes.set('marker-start', 'url(#dimensionFrom)')
   if (!so.noEndMarker) dimension.attributes.set('marker-end', 'url(#dimensionTo)')
 

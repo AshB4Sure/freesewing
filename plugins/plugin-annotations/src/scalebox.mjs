@@ -108,7 +108,6 @@ export const scaleboxMacros = {
       so.at.y + imperialHeight / 2
     )
     // Text anchor points
-    // points.__scaleboxLead = new Point(so.at.x - 45 * scale, so.at.y - 15 * scale)
     points.__scaleboxLead = points.__scaleboxImperialTopLeft
       .shift(-90, 7 * scale)
       .shift(0, 2 * scale)
@@ -146,14 +145,14 @@ export const scaleboxMacros = {
     }
     // Paths
     paths.__scaleboxImperial = new Path()
-      .attr('class', 'scalebox imperial fill-current note')
+      .attr('class', 'scalebox imperial fill-current')
       .move(points.__scaleboxImperialTopLeft)
       .line(points.__scaleboxImperialBottomLeft)
       .line(points.__scaleboxImperialBottomRight)
       .line(points.__scaleboxImperialTopRight)
       .close()
     paths.__scaleboxMetric = new Path()
-      .attr('class', 'scalebox metric fill-bg note')
+      .attr('class', 'scalebox metric fill-bg')
       .move(points.__scaleboxMetricTopLeft)
       .line(points.__scaleboxMetricBottomLeft)
       .line(points.__scaleboxMetricBottomRight)
