@@ -23,7 +23,6 @@ export const scaleboxMacros = {
       for (let id of ['__scaleboxMetric', '__scaleboxImperial']) delete paths[id]
       return true
     }
-    console.log({ at: so.at })
 
     const transform = function (anchor) {
       // const cx = -1 * (scale * anchor.x - anchor.x)

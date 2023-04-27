@@ -29,7 +29,6 @@ function drawDimension(from, to, so, { Path, units, scale }) {
   if (!so.noStartMarker) dimension.attributes.set('marker-start', 'url(#dimensionFrom)')
   if (!so.noEndMarker) dimension.attributes.set('marker-end', 'url(#dimensionTo)')
 
-  console.log({ from: from, to: to, dimension: dimension })
   return dimension
 }
 
